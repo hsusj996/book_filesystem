@@ -1,0 +1,7 @@
+dbstructure,1324,sejin,2222
+python,1954,sejin,2222
+java,1954,sejin,2222
+cpp,1954,sejin,2222
+sql,1954,sejin,2222
+vhdl,1954,sejin,2222
+vlpad,5464,1234,2222
