@@ -1,10 +1,10 @@
-#include "stdheaders.h"
+#include "stdheaders.h"			//라이브러리 모음
 #include "LinkedList.h"
 #include "MenuOption.h"
 #include "File.h"
 
-void Init(char FileName[]) {
-	int iFileOption;
+void Init(char FileName[]) {	//최초 실행 함수
+	int iFileOption;	//파일로드 옵션
 	FILE* fd;
 
 	printf("도서목록 파일시스템 프로그램입니다.\n");
@@ -12,7 +12,7 @@ void Init(char FileName[]) {
 	scanf_s("%d", &iFileOption);
 	getchar();
 
-	if (iFileOption == NEW_FILE) {
+	if (iFileOption == NEW_FILE) {			//새 파일 생성
 		printf("새로 만들 파일명을 입력해주세요. : ");
 		gets(FileName);
 		if ((fd = fopen(FileName, "w")) == NULL) {
@@ -21,7 +21,7 @@ void Init(char FileName[]) {
 		}
 	}
 
-	else if (iFileOption == LOAD_FILE) {
+	else if (iFileOption == LOAD_FILE) {	//기존 파일 로드
 		while (true) {
 			printf("불러올 파일명을 입력해주세요.(Q 입력 시 종료) : ");
 			gets(FileName);
@@ -56,8 +56,8 @@ void Init(char FileName[]) {
 	return;
 }
 
-void Run(char FileName[]) {
-	int iMenuOption;
+void Run(char FileName[]) {		//실행 동작 함수
+	int iMenuOption;		//메뉴 옵션 변수
 
 	while (true) {
 		printf("1: 삽입, 2: 삭제, 3: 수정, 4: 검색, 5: 종료 => ");
@@ -65,19 +65,19 @@ void Run(char FileName[]) {
 		getchar();
 
 		switch (iMenuOption) {
-		case INSERT:
+		case INSERT:	//삽입
 			Insert();
 			break;
-		case DEL:
+		case DEL:		//삭제
 			Delete();
 			break;
-		case UPDATE:
+		case UPDATE:	//수정
 			Update();
 			break;
-		case SEARCH:
+		case SEARCH:	//검색
 			Search();
 			break;
-		default:
+		default:		//저장 및 종료
 			if (SaveFile(FileName) == 1) {
 				printf("저장성공!\n");
 			}
