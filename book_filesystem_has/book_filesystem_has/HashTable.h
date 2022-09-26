@@ -22,7 +22,7 @@ typedef struct node {
 	NodePointer next;
 };
 
-typedef struct {			//버켓
+typedef struct {			//해시테이블 버켓
 	NodePointer head;
 	int count;
 }Bucket;

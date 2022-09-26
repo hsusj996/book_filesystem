@@ -3,8 +3,6 @@
 
 #define BUFFER_SIZE 100
 
-Bucket* HashTable;
-
 int Insert();
 
 int Delete();

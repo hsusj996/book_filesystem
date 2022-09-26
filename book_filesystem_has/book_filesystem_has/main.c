@@ -105,7 +105,8 @@ void Run(char FileName[]) {		//실행 동작
 }
 
 int main() {
-	HashTable = (Bucket*)malloc(BUCKET_SIZE * sizeof(Bucket));		//HashTable.h에 선언된 해시테이블에 메모리할당
+	//HashTable.h에 선언된 해시테이블에 메모리할당
+	HashTable = (Bucket*)malloc(BUCKET_SIZE * sizeof(Bucket));		
 
 	for (int i = 0; i < BUCKET_SIZE; i++) {			//해시테이블 초기화
 		HashTable[i].count = 0;

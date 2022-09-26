@@ -30,10 +30,11 @@ int Delete() {			//삭제 함수
 
 	gets(DeleteCode);
 
-	if (Hash_Del(atoi(DeleteCode) == 0)) {
+	if (Hash_Del(atoi(DeleteCode)) == 0) {
 		printf("\n오류 : 삭제 실패!\n");
 		return 0;
 	}
+	printf("\n삭제 성공!\n");
 	return 1;
 }
 
@@ -41,8 +42,8 @@ void Print() {			//전체 도서목록 출력
 	NodePointer temp;
 	int iBook_Index = 0;
 
-	printf("\n\t도서명\t도서코드\t저자\t출판년도\n");
-	printf("--------------------------------------------------\n");
+	printf("\n   %-20s %-10s %-15s %-10s\n", "도서명", "도서코드", "저자", "출판년도");
+	printf("-----------------------------------------------------------------\n");
 
 	for (int i = 0; i < BUCKET_SIZE; i++) {
 		if (HashTable[i].count == 0) {		//버켓에 노드가 없다면 다음으로
@@ -51,7 +52,8 @@ void Print() {			//전체 도서목록 출력
 		temp = HashTable[i].head;
 		for (; temp; temp = temp->next) {
 			printf("%d : ", iBook_Index++);
-			printf("%10s %10s %10s %10s\n", temp->data.sBookName, temp->data.sBookCode, temp->data.sAuthor, temp->data.sYear);
+			printf("%-20s %-10s %-15s %-10s\n",
+					temp->data.sBookName, temp->data.sBookCode, temp->data.sAuthor, temp->data.sYear);
 		}
 	}
 	printf("\n");

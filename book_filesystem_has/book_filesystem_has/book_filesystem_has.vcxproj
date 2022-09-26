@@ -150,6 +150,9 @@
     <ClInclude Include="MenuOption.h" />
     <ClInclude Include="stdheaders.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="BookInfoFile.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
