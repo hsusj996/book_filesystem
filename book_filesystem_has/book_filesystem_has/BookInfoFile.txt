@@ -1,0 +1,7 @@
+coffe,2221,sejin,1111
+dbstructure,1324,sejin,2222
+good,1111,sejin,2222
+blue,1111,sejin,1111
+cpp,7872,sejin,2222
+python,1954,sejin,2222
+Goo,6555,sejin,9876

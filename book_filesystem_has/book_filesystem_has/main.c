@@ -1,10 +1,21 @@
-#include "stdheaders.h"			//라이브러리 모음
-#include "LinkedList.h"
-#include "MenuOption.h"
-#include "File.h"
+#include "stdheaders.h"			//std헤더파일 묶음
+#include "HashTable.h"			//해시테이블 헤더
+#include "MenuOption.h"			//메뉴옵션 헤더
+#include "File.h"				//파일옵션 헤더
 
-void Init(char FileName[]) {	//최초 실행 함수
-	int iFileOption;	//파일로드 옵션
+#define BUFFER_SIZE 100
+#define FILE_SIZE 128
+
+enum FileOption {		//파일 옵션
+	NO_FILE_OPTION, NEW_FILE, LOAD_FILE
+};
+
+enum MenuOption {		//메뉴 옵션
+	NO_MENU_OPTION, INSERT, DEL, UPDATE, SEARCH, EXIT
+};
+
+void Init(char FileName[]) {
+	int iFileOption;
 	FILE* fd;
 
 	printf("도서목록 파일시스템 프로그램입니다.\n");
@@ -20,7 +31,6 @@ void Init(char FileName[]) {	//최초 실행 함수
 			return;
 		}
 	}
-
 	else if (iFileOption == LOAD_FILE) {	//기존 파일 로드
 		while (true) {
 			printf("불러올 파일명을 입력해주세요.(Q 입력 시 종료) : ");
@@ -35,12 +45,12 @@ void Init(char FileName[]) {	//최초 실행 함수
 				printf("에러 : 해당 파일은 존재하지 않습니다. 다시 입력해주세요. \n");
 			}
 			else {
-				if (LoadFile(fd) == -1) {
-					printf("불러오기 실패\n");
+				if (LoadFile(fd) == 0) {			//파일로드 실행, 실패 시 0 반환
+					printf("\n불러오기 실패\n");
 					continue;
 				}
 				else {
-					printf("불러오기 성공! \n");
+					printf("\n불러오기 성공! \n");
 					break;
 				}
 			}
@@ -48,7 +58,7 @@ void Init(char FileName[]) {	//최초 실행 함수
 	}
 
 	else {
-		printf("종료합니다. \n");
+		printf("\n종료합니다.\n");
 		return;
 	}
 
@@ -56,7 +66,7 @@ void Init(char FileName[]) {	//최초 실행 함수
 	return;
 }
 
-void Run(char FileName[]) {		//실행 동작 함수
+void Run(char FileName[]) {		//실행 동작
 	int iMenuOption;		//메뉴 옵션 변수
 
 	while (true) {
@@ -79,28 +89,36 @@ void Run(char FileName[]) {		//실행 동작 함수
 			break;
 		default:		//저장 및 종료
 			if (SaveFile(FileName) == 1) {
-				printf("저장성공!\n");
+				printf("\n저장성공!\n");
 			}
 			else {
-				printf("저장실패!\n");
+				printf("\n저장실패!\n");
 			}
-			printf("종료합니다.\n");
-			return 0;
+			printf("\n종료합니다.\n");
+			system("pause");
+			return;
 		}
 		system("pause");
 		system("cls");
 	}
+	return;
 }
 
 int main() {
+	HashTable = (Bucket*)malloc(BUCKET_SIZE * sizeof(Bucket));		//HashTable.h에 선언된 해시테이블에 메모리할당
+
+	for (int i = 0; i < BUCKET_SIZE; i++) {			//해시테이블 초기화
+		HashTable[i].count = 0;
+		HashTable[i].head = NULL;
+	}
+
 	char FileName[FILE_SIZE];
-	
-	Init(FileName);
+	Init(FileName);				//파일 옵션
 
 	system("pause");
 	system("cls");
 
-	Run(FileName);
+	Run(FileName);				//동작 실행
 
 	return 0;
 }
