@@ -1,7 +1,0 @@
-dbstructure,1324,sejin,2222
-python,1954,sejin,2222
-java,4564,sejin,2222
-cpp,7872,sejin,2222
-sql,6215,sejin,2222
-vhdl,1111,sejin,2222
-vlpad,5464,sejin,2222
